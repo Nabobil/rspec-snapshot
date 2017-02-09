@@ -11,7 +11,7 @@ module RSpec
 
         def matches?(actual)
           @actual = actual
-          filename = "#{@snapshot_name}.snap"
+          filename = "#{@snapshot_name}.#{RSpec.configuration.snapshot_ext}"
           snap_path = File.join(snapshot_dir, filename)
           FileUtils.mkdir_p(File.dirname(snap_path)) unless Dir.exist?(File.dirname(snap_path))
           @actual = normalize_html(@actual) if @snapshot_name.include? 'html'
