@@ -21,6 +21,7 @@ module RSpec
             file.close
             @actual.to_s == @expect
           else
+            raise 'Attempted to generate snapshot in CI mode' if ENV['CI']
             RSpec.configuration.reporter.message "Generate #{snap_path}"
             file = File.new(snap_path, "w+")
             file.write(@actual)
